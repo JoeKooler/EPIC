@@ -54,15 +54,17 @@ public class MainMenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         //mTextMessage = (TextView) findViewById(R.id.message);
-        ImageView manual_add_button = (ImageView) findViewById(R.id.manual_add_button);
+        final ImageView manual_add_button = (ImageView) findViewById(R.id.manual_add_button);
         manual_add_button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 Toast.makeText(v.getContext(),"Switch lana",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(),manual_add_activity.class);
-            }
+                Intent manualAddActivityintent = new Intent(getApplicationContext(),ManualDeviceAddingActivity.class);
+                startActivity(manualAddActivityintent);
+                finish();
+            }   
         });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
