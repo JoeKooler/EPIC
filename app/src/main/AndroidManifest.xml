@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainMenuActivity"
-            android:label="Hello">
+            android:label="EPIC">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
