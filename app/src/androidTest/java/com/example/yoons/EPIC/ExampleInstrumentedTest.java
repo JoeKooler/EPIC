@@ -1,4 +1,4 @@
-package com.example.yoons.phcbottomnavigator;
+package com.example.yoons.EPIC;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

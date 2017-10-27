@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PHCBottomNavigator.iml" filepath="$PROJECT_DIR$/PHCBottomNavigator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EPIC.iml" filepath="$PROJECT_DIR$/EPIC.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
