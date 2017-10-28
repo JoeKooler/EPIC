@@ -1,10 +1,14 @@
 package com.example.yoons.EPIC;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.NavigationMenu;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -67,7 +71,8 @@ public class HomeFragment extends Fragment
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
+        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         AlertDialog.Builder a_builder = new AlertDialog.Builder(getContext());
         a_builder.setMessage("There's no device to select , you need to setup device first").setCancelable(false).setPositiveButton("OK!", new DialogInterface.OnClickListener()
@@ -75,7 +80,7 @@ public class HomeFragment extends Fragment
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                dialog.cancel();
+                transaction.replace(com.example.yoons.EPIC.R.id.content,new SetupScreenFragment()).commit();
             }
         });
 
