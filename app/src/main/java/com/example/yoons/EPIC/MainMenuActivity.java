@@ -1,6 +1,7 @@
 package com.example.yoons.EPIC;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -19,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 //import android.widget.TextView;
 
-public class MainMenuActivity extends AppCompatActivity
+public class MainMenuActivity extends AppCompatActivity implements SelectBrandFragment.OnFragmentInteractionListener
 {
 
     //private TextView mTextMessage;
@@ -84,4 +85,9 @@ public class MainMenuActivity extends AppCompatActivity
 
     }
 
+   @Override
+    public void onFragmentInteraction(Uri uri)
+    {
+
+    }
 }

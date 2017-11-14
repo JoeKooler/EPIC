@@ -12,6 +12,7 @@
     tools:context="com.example.yoons.EPIC.SetupScreenFragment">
 
     <LinearLayout
+        android:id="@+id/setup_recycler_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

@@ -1,12 +1,22 @@
 package com.example.yoons.EPIC;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import java.util.List;
 /**
@@ -17,9 +27,17 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
 {
     List<String> deviceTypeList;
 
-    public SetupRecyclerViewAdapter(List<String> deviceTypeList)
+    private Context context;
+
+    SetupScreenFragment setupScreenFragment;
+
+
+
+    public SetupRecyclerViewAdapter(Context context, List<String> deviceTypeList, SetupScreenFragment setupScreenFragment)
     {
+        this.context = context;
         this.deviceTypeList = deviceTypeList;
+        this.setupScreenFragment = setupScreenFragment;
     }
 
     @Override
@@ -31,10 +49,12 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
     @Override
     public void onBindViewHolder(final SetupRecyclerViewHolder holder, int position)
     {
-        String devicetype = deviceTypeList.get(position);
+        final String deviceType = deviceTypeList.get(position);
 
-        holder.deviceType.setText(devicetype);
-        switch (devicetype)
+
+
+        holder.deviceType.setText(deviceType);
+        switch (deviceType)
         {
             case "Television":
                 holder.deviceTypeImage.setImageResource(R.drawable.tvimg);
@@ -47,15 +67,24 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
                 break;
         }
 
-        holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener()
+        holder.setupScreenLayout.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+            public void onClick(View v)
             {
-                menu.add(holder.getAdapterPosition(),0,0,"edit");
-                menu.add(holder.getAdapterPosition(),1,0,"delete");
+                android.support.v4.app.Fragment selectBrandFragment = new SelectBrandFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("deviceType",deviceType);
+                selectBrandFragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction transaction = setupScreenFragment.getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.content,selectBrandFragment);
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
+
+
     }
 
     @Override
@@ -68,6 +97,7 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
     {
         TextView deviceType;
         ImageView deviceTypeImage;
+        LinearLayout setupScreenLayout;
 
         public SetupRecyclerViewHolder(View itemView)
         {
@@ -75,6 +105,7 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
 
             deviceType = (TextView) itemView.findViewById(R.id.deviceType);
             deviceTypeImage = (ImageView) itemView.findViewById(R.id.typeImage);
+            setupScreenLayout = (LinearLayout) itemView.findViewById(R.id.setup_recycler_layout);
         }
     }
 }
