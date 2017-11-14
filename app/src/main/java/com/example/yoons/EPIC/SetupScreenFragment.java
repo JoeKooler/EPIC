@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -39,7 +35,9 @@ public class SetupScreenFragment extends Fragment
     private String mParam1;
     private String mParam2;
 
-    private ListView mListView;
+    private RecyclerView recyclerView;
+    private List<String> deviceTypeList;
+    private SetupRecyclerViewAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,16 +83,20 @@ public class SetupScreenFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_setup_screen, container, false);
 
-        mListView = (ListView) view.findViewById(R.id.listViewinSetup);
+        deviceTypeList = new ArrayList<>();
+        recyclerView = (RecyclerView) view.findViewById(R.id.listViewinSetup);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        ArrayList<Card> list = new ArrayList<>();
-        list.add(new Card("drawable://" + R.drawable.tvimg, "Television"));
-        list.add(new Card("drawable://" + R.drawable.airconditionerimg, "Air Conditioner"));
-        list.add(new Card("drawable://" + R.drawable.projectimg, "Projector"));
+        recyclerView.setLayoutManager(linearLayoutManager);
 
+        deviceTypeList.add("Television");
+        deviceTypeList.add("Air Conditioner");
+        deviceTypeList.add("Projector");
 
-        CardListAdapter adapter = new CardListAdapter(getContext(), R.layout.card_layout_main, list);
-        mListView.setAdapter(adapter);
+        adapter = new SetupRecyclerViewAdapter(deviceTypeList);
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
