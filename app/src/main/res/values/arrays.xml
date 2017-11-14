@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="tvs_brand_array">
-        <item>Samsung</item>
-        <item>LG</item>
-        <item>Panasonic</item>
-        <item>Sony</item>
-        <item>Sharp</item>
-        <item>Toshiba</item>
-        <item>Apple</item>
-    </string-array>
 
-    <string-array name="device_array">
-        <item>TV</item>
-        <item>Air Conditioner</item>
-        <item>Projector</item>
-    </string-array>
 </resources>

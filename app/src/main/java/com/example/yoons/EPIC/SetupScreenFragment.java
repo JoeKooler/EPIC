@@ -4,12 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.ArrayList;
 
 
 /**
@@ -30,6 +38,8 @@ public class SetupScreenFragment extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView mListView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,19 +83,18 @@ public class SetupScreenFragment extends Fragment
                              Bundle savedInstanceState)
     {
 
-        View view = inflater.inflate(com.example.yoons.EPIC.R.layout.fragment_setup_screen, container, false);
+        View view = inflater.inflate(R.layout.fragment_setup_screen, container, false);
 
-        Spinner device_spinner = (Spinner)view.findViewById(com.example.yoons.EPIC.R.id.device_spinner);
-        ArrayAdapter<CharSequence> device_adapter = ArrayAdapter.createFromResource
-                (getContext(), com.example.yoons.EPIC.R.array.device_array, android.R.layout.simple_spinner_item);
-        device_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        device_spinner.setAdapter(device_adapter);
+        mListView = (ListView) view.findViewById(R.id.listView);
 
-        Spinner brand_spinner = (Spinner)view.findViewById(com.example.yoons.EPIC.R.id.brand_spinner);
-        ArrayAdapter<CharSequence> brand_adapter = ArrayAdapter.createFromResource
-                (getContext(), com.example.yoons.EPIC.R.array.tvs_brand_array, android.R.layout.simple_spinner_item);
-        brand_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        brand_spinner.setAdapter(brand_adapter);
+        ArrayList<Card> list = new ArrayList<>();
+        list.add(new Card("drawable://" + R.drawable.tvimg, "Television"));
+        list.add(new Card("drawable://" + R.drawable.airconditionerimg, "Air Conditioner"));
+        list.add(new Card("drawable://" + R.drawable.projectimg, "Projector"));
+
+
+        CardListAdapter adapter = new CardListAdapter(getContext(), R.layout.card_layout_main, list);
+        mListView.setAdapter(adapter);
 
         return view;
     }
@@ -135,4 +144,5 @@ public class SetupScreenFragment extends Fragment
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
