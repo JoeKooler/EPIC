@@ -85,7 +85,7 @@ public class SetupScreenFragment extends Fragment
 
         View view = inflater.inflate(R.layout.fragment_setup_screen, container, false);
 
-        mListView = (ListView) view.findViewById(R.id.listView);
+        mListView = (ListView) view.findViewById(R.id.listViewinSetup);
 
         ArrayList<Card> list = new ArrayList<>();
         list.add(new Card("drawable://" + R.drawable.tvimg, "Television"));

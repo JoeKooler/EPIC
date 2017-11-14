@@ -50,6 +50,7 @@ public class ManualDeviceAddingActivity extends AppCompatActivity
         });
     }
 
+
     @Override
     protected void onStart()
     {

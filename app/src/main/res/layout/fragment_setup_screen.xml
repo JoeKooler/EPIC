@@ -6,7 +6,7 @@
     tools:context="com.example.yoons.EPIC.SetupScreenFragment">
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewinSetup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
