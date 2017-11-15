@@ -78,8 +78,8 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
                 selectBrandFragment.setArguments(bundle);
                 android.support.v4.app.FragmentTransaction transaction = setupScreenFragment.getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.content,selectBrandFragment);
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.addToBackStack(null);
+                //transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                //transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

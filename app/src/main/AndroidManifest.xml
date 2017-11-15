@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yoons.EPIC">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,8 @@
         <activity
             android:name=".ManualDeviceAddingActivity"
             android:label="@string/title_activity_manual_device_adding"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".FixedRemoteActivity"></activity>
     </application>
 
 </manifest>

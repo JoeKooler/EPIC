@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:paddingBottom="10dp"
+    android:id="@+id/home_recycler_main_layout"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/deviceTypeInHome"
+            android:layout_width="61dp"
+            android:layout_height="62dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/deviceVersionInHome"
+            android:layout_width="219dp"
+            android:layout_height="29dp"
+            android:layout_alignBottom="@+id/deviceTypeInHome"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@+id/deviceTypeInHome"
+            android:layout_toRightOf="@+id/deviceTypeInHome"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Card Title"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/devicaNameInHome"
+            android:layout_width="219dp"
+            android:layout_height="29dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/deviceTypeInHome"
+            android:layout_toRightOf="@+id/deviceTypeInHome"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Card Title"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</LinearLayout>

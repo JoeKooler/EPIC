@@ -86,6 +86,7 @@ public class SetupScreenFragment extends Fragment
         deviceTypeList = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.listViewinSetup);
         recyclerView.setHasFixedSize(true);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 

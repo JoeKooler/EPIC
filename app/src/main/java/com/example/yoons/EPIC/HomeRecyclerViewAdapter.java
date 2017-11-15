@@ -1,11 +1,15 @@
 package com.example.yoons.EPIC;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,26 +30,27 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     @Override
     public HomeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        return new HomeRecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.mini_card_layout,parent,false));
+        return new HomeRecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_recycler_layout,parent,false));
     }
 
     @Override
     public void onBindViewHolder(final HomeRecyclerViewHolder holder, int position)
     {
-        Device device = deviceList.get(position);
+        final Device device = deviceList.get(position);
 
-        holder.DeviceBrand.setText(device.Brand);
-        holder.DeviceVersion.setText(device.Version);
+
+        holder.deviceBrand.setText(device.Brand);
+        holder.deviceVersion.setText(device.Version);
         switch (device.Type)
         {
             case "TV":
-                holder.DeviceType.setImageResource(R.drawable.tvicon);
+                holder.deviceType.setImageResource(R.drawable.tvicon);
                 break;
             case "Airconditioner":
-                holder.DeviceType.setImageResource(R.drawable.airicon);
+                holder.deviceType.setImageResource(R.drawable.airicon);
                 break;
             case "Projector":
-                holder.DeviceType.setImageResource(R.drawable.projectoricon);
+                holder.deviceType.setImageResource(R.drawable.projectoricon);
                 break;
         }
 
@@ -58,6 +63,19 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 menu.add(holder.getAdapterPosition(),1,0,"delete");
             }
         });
+
+        holder.homeScreenLayout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(v.getContext(),FixedRemoteActivity.class);
+                intent.putExtra("deviceType", device.Type);
+                intent.putExtra("deviceBrand", device.Brand);
+                intent.putExtra("deviceVersion", device.Version);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -68,16 +86,20 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     class HomeRecyclerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView DeviceBrand,DeviceVersion;
-        ImageView DeviceType;
+        TextView deviceBrand;
+        TextView deviceVersion;
+        ImageView deviceType;
+        LinearLayout homeScreenLayout;
+
 
         public HomeRecyclerViewHolder(View itemView)
         {
             super(itemView);
 
-            DeviceBrand = (TextView) itemView.findViewById(R.id.DevicaName);
-            DeviceVersion = (TextView) itemView.findViewById(R.id.DevicaVersion);
-            DeviceType = (ImageView) itemView.findViewById(R.id.DeviceType);
+            deviceBrand = (TextView) itemView.findViewById(R.id.devicaNameInHome);
+            deviceVersion = (TextView) itemView.findViewById(R.id.deviceVersionInHome);
+            deviceType = (ImageView) itemView.findViewById(R.id.deviceTypeInHome);
+            homeScreenLayout = (LinearLayout) itemView.findViewById(R.id.home_recycler_main_layout);
         }
     }
 }
