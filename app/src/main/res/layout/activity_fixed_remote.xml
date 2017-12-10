@@ -40,4 +40,5 @@
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="24sp" />
+
 </RelativeLayout>

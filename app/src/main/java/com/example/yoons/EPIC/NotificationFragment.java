@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +31,8 @@ public class NotificationFragment extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    DatabaseReference databaseReference;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,8 +73,13 @@ public class NotificationFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification_fragment, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_notification_fragment, container, false);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("DeviceStatus").child("Airconditioner").child("Samsung");
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -84,7 +94,8 @@ public class NotificationFragment extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        if (context instanceof OnFragmentInteractionListener)
+        {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             Toast.makeText(context, "Notification Attached", Toast.LENGTH_SHORT).show();

@@ -14,18 +14,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/selectBrandDeviceRemoteText"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_arrow_back_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/selectBrandDeviceRemoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Select your device remote"
         android:textAlignment="center"
@@ -33,166 +36,188 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/deviceBrandinRemote"
-        android:layout_width="0dp"
-        android:layout_height="31dp"
+        android:layout_width="59dp"
+        android:layout_height="32dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/deviceTypeinRemote"
-        android:layout_marginBottom="116dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/selectBrandDeviceRemoteText" />
 
     <TextView
         android:id="@+id/deviceTypeinRemote"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
+        android:layout_width="94dp"
+        android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="146dp"
-        android:layout_marginTop="153dp"
+        android:layout_marginStart="8dp"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/deviceBrandinRemote" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/selectRemoteBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/imageView3"
-        android:layout_marginBottom="226dp"
+        android:layout_alignTop="@+id/selectRemoteNextButton"
+        android:layout_marginBottom="240dp"
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/selectRemoteNextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/deviceBrandinRemote"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="240dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/selectRemotePower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView6"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginBottom="38dp"
-        android:layout_marginStart="31dp"
+        android:layout_alignLeft="@+id/selectBrandDeviceRemoteText"
+        android:layout_alignStart="@+id/selectBrandDeviceRemoteText"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="260dp"
         android:src="@drawable/ic_power_settings_new_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/selectRemoteMenu"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
         android:layout_alignEnd="@+id/textView6"
         android:layout_alignRight="@+id/textView6"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_marginBottom="38dp"
-        android:layout_marginEnd="36dp"
+        android:layout_alignTop="@+id/selectRemoteVolumeDown"
+        android:layout_marginEnd="132dp"
+        android:layout_marginTop="260dp"
         android:src="@drawable/ic_menu_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView6"
-        android:layout_alignStart="@+id/imageView6"
+        android:id="@+id/selectRemoteVolumeDown"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignLeft="@+id/selectRemoteVolumeUp"
+        android:layout_alignStart="@+id/selectRemoteVolumeUp"
         android:layout_below="@+id/textView10"
-        android:layout_marginStart="21dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="348dp"
         android:src="@drawable/ic_volume_down_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="@+id/textView9" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/selectRemoteVolumeUp"
+        android:layout_width="36dp"
+        android:layout_height="38dp"
         android:layout_above="@+id/textView10"
         android:layout_alignLeft="@+id/textView10"
         android:layout_alignStart="@+id/textView10"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginTop="348dp"
         android:src="@drawable/ic_volume_up_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintStart_toStartOf="@+id/textView10" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageView5"
-        android:layout_alignStart="@+id/imageView5"
+        android:layout_height="27dp"
+        android:layout_alignBottom="@+id/selectRemoteBackButton"
+        android:layout_alignLeft="@+id/selectRemotePower"
+        android:layout_alignStart="@+id/selectRemotePower"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="128dp"
         android:text="POWER"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintBottom_toTopOf="@+id/selectRemoteVolumeDown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectRemotePower"
+        app:layout_constraintVertical_bias="0.153" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_below="@+id/imageView"
+        android:layout_width="42dp"
+        android:layout_height="27dp"
+        android:layout_alignLeft="@+id/selectRemoteMenu"
+        android:layout_alignStart="@+id/selectRemoteMenu"
+        android:layout_below="@+id/selectRemoteMenu"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="128dp"
         android:text="MENU"
+        android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/selectRemoteVolumeUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectRemoteMenu"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_below="@+id/imageView4"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="54dp"
+        android:layout_alignEnd="@+id/selectBrandDeviceRemoteText"
+        android:layout_alignRight="@+id/selectBrandDeviceRemoteText"
+        android:layout_below="@+id/selectRemoteVolumeDown"
+        android:layout_marginStart="104dp"
         android:text="VOLUME DOWN"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectRemoteVolumeDown" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignBottom="@+id/selectRemoteNextButton"
         android:layout_alignLeft="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
-        android:layout_marginStart="20dp"
+        android:layout_marginEnd="116dp"
         android:text="VOLUME UP"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectRemoteVolumeUp" />
+
+    <TextView
+        android:id="@+id/versionNumberRemoteSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deviceTypeinRemote" />
 
 </android.support.constraint.ConstraintLayout>
