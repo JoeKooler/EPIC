@@ -37,17 +37,6 @@ public class ManualDeviceAddingActivity extends AppCompatActivity
         button1 = (Button) findViewById(R.id.changeOne);
         button2 = (Button) findViewById(R.id.changeTwo);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(com.example.yoons.EPIC.R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                testRef.setValue("+");
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
 

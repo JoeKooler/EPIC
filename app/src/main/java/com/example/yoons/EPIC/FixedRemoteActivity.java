@@ -7,8 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 public class FixedRemoteActivity extends AppCompatActivity
 {
+
+    //DatabaseReference
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

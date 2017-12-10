@@ -58,21 +58,6 @@ public class MainMenuActivity extends AppCompatActivity implements SelectBrandFr
     {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoons.EPIC.R.layout.activity_main_menu);
-        //mTextMessage = (TextView) findViewById(R.id.message);
-        final ImageView manual_add_button = (ImageView) findViewById(com.example.yoons.EPIC.R.id.manual_add_button);
-        manual_add_button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(v.getContext(),"Switch lana",Toast.LENGTH_SHORT).show();
-                Intent manualAddActivityintent = new Intent(getApplicationContext(),ManualDeviceAddingActivity.class);
-                startActivity(manualAddActivityintent);
-                //finish();
-                //No finish here since they can't really tap it more than one at a time :P
-            }
-        });
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(com.example.yoons.EPIC.R.id.navigation);
         navigation.setSelectedItemId(com.example.yoons.EPIC.R.id.navigation_home);

@@ -26,17 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/manual_add_button"
-                android:layout_width="48dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/stat_notify_more" />
         </android.support.constraint.ConstraintLayout>
 
     </FrameLayout>

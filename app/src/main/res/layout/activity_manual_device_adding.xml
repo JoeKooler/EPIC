@@ -71,15 +71,6 @@
         android:id="@+id/include"
         layout="@layout/content_manual_device_adding" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="56dp"
-        android:layout_height="49dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/background_light"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="288dp"
-        tools:layout_editor_absoluteY="502dp" />
+
 
 </android.support.design.widget.CoordinatorLayout>

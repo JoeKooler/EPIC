@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +77,24 @@ public class RemoteSelectFragment extends Fragment {
 
         TextView deviceBrandTest = (TextView) view.findViewById(R.id.deviceBrandinRemote);
         TextView deviceTypeTest = (TextView) view.findViewById(R.id.deviceTypeinRemote);
+
+        ImageView backButtonInSelectBrand = (ImageView) view.findViewById(R.id.backButtonInSelectRemote);
+        backButtonInSelectBrand.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Fragment selectBrandFragment = new SelectBrandFragment();
+                Bundle bundle2 = getArguments();
+                String tempDeviceType = bundle2.getString("deviceType");
+                bundle2.putString("deviceType",tempDeviceType);
+                selectBrandFragment.setArguments(bundle2);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.content,selectBrandFragment).commit();
+
+            }
+        });
 
         deviceBrandTest.setText(deviceBrand);
         deviceTypeTest.setText(deviceType);
