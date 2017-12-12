@@ -1,6 +1,8 @@
 package com.example.yoons.EPIC;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -32,6 +43,14 @@ public class RemoteSelectFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String devicePower = "off";
+    private String deviceMenu = "off";
+    private int patternNumber = 1;
+
+    private DatabaseReference maxPatternReference, tempRemoteReference;
+    private FirebaseDatabase firebaseDatabase;
+
+    private long maxPattern;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,10 +94,48 @@ public class RemoteSelectFragment extends Fragment {
         String deviceType = bundle.getString("deviceType");
         String deviceBrand = bundle.getString("deviceBrand");
 
+        ImageView backButtonInSelectBrand = (ImageView) view.findViewById(R.id.backButtonInSelectRemote);
+        final ImageView selectRemoteNextButton = (ImageView) view.findViewById(R.id.selectRemoteNextButton);
+        final ImageView selectRemoteBackButton = (ImageView) view.findViewById(R.id.selectRemoteBackButton);
+        ImageView powerButton = (ImageView) view.findViewById(R.id.selectRemotePower);
+        ImageView menuButton = (ImageView) view.findViewById(R.id.selectRemoteMenu);
+        ImageView volumeUpButton = (ImageView) view.findViewById(R.id.selectRemoteVolumeUp);
+        ImageView volumeDownButton = (ImageView) view.findViewById(R.id.selectRemoteVolumeDown);
+
         TextView deviceBrandTest = (TextView) view.findViewById(R.id.deviceBrandinRemote);
         TextView deviceTypeTest = (TextView) view.findViewById(R.id.deviceTypeinRemote);
+        final TextView versionNumberRemoteSelection = (TextView) view.findViewById(R.id.versionNumberRemoteSelection);
 
-        ImageView backButtonInSelectBrand = (ImageView) view.findViewById(R.id.backButtonInSelectRemote);
+        maxPatternReference = FirebaseDatabase.getInstance().getReference();
+        tempRemoteReference = FirebaseDatabase.getInstance().getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        tempRemoteReference = firebaseDatabase.getReference("TempUnit").child("TempRemote");
+        tempRemoteReference.child("Device").child("Brand").setValue(deviceBrand);
+        tempRemoteReference.child("Device").child("Type").setValue(deviceType);
+        tempRemoteReference.child("Device").child("Version").setValue(patternNumber);
+
+        // get reference to 'users' node
+        maxPatternReference = firebaseDatabase.getReference("AllVersion").child(deviceType).child(deviceBrand);
+        System.out.println(deviceType+""+deviceBrand);
+        maxPatternReference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                maxPattern = dataSnapshot.getValue(long.class);
+                versionNumberRemoteSelection.setText(patternNumber + "/" + maxPattern);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+
+
         backButtonInSelectBrand.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -98,6 +155,109 @@ public class RemoteSelectFragment extends Fragment {
 
         deviceBrandTest.setText(deviceBrand);
         deviceTypeTest.setText(deviceType);
+
+        if (patternNumber == 1)
+            selectRemoteBackButton.setColorFilter(Color.WHITE);
+        if (maxPattern == 1)
+        {
+            selectRemoteNextButton.setColorFilter(Color.WHITE);
+            selectRemoteBackButton.setColorFilter(Color.WHITE);
+        }
+
+        selectRemoteNextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(patternNumber<maxPattern) {
+                    patternNumber++;
+                    versionNumberRemoteSelection.setText(patternNumber + "/" + maxPattern);
+                    tempRemoteReference.child("Device").child("Version").setValue(patternNumber);
+                    selectRemoteBackButton.setColorFilter(Color.BLACK);
+                    if(patternNumber>=maxPattern)
+                        selectRemoteNextButton.setColorFilter(Color.WHITE);
+                }
+            }
+
+        });
+
+        selectRemoteBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(patternNumber<=maxPattern && patternNumber > 1)
+                {
+                    patternNumber--;
+                    versionNumberRemoteSelection.setText(patternNumber + "/" + maxPattern);
+                    tempRemoteReference.child("Device").child("Version").setValue(patternNumber);
+                    selectRemoteNextButton.setColorFilter(Color.BLACK);
+                    if(patternNumber<=1)
+                        selectRemoteBackButton.setColorFilter(Color.WHITE);
+                }
+            }
+        });
+
+
+        powerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(devicePower == "off") {
+                    tempRemoteReference.child("Status").child("Power").setValue("on");
+                    devicePower = "on";
+                }
+                else {
+                    tempRemoteReference.child("Status").child("Power").setValue("off");
+                    devicePower = "off";
+                }
+            }
+        });
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(deviceMenu == "off") {
+                    tempRemoteReference.child("Status").child("Menu").setValue("on");
+                    deviceMenu = "on";
+                }
+                else{
+                    tempRemoteReference.child("Status").child("Menu").setValue("off");
+                    deviceMenu = "off";
+                }
+            }
+        });
+
+        volumeDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tempRemoteReference.child("Status").child("Volume").setValue("down");
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                tempRemoteReference.child("Status").child("Volume").setValue("Still");
+            }
+        });
+
+        volumeUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tempRemoteReference.child("Status").child("Volume").setValue("up");
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                tempRemoteReference.child("Status").child("Volume").setValue("Still");
+            }
+        });
 
         return view;
     }
