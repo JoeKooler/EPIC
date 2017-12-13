@@ -46,8 +46,6 @@ public class RemoteSelectFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String uniqueKey;
-    private String devicePower = "off";
-    private String deviceMenu = "off";
     private int patternNumber = 1;
 
     private DatabaseReference maxPatternReference, tempRemoteReference, myDeviceReference;
@@ -120,7 +118,7 @@ public class RemoteSelectFragment extends Fragment {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        tempRemoteReference = firebaseDatabase.getReference("TempUnit").child("TempRemote");
+        tempRemoteReference = firebaseDatabase.getReference("TempUnit").child("CurrentRemote");
         tempRemoteReference.child("Device").child("Brand").setValue(deviceBrand);
         tempRemoteReference.child("Device").child("Type").setValue(deviceType);
         tempRemoteReference.child("Device").child("Version").setValue(patternNumber);
@@ -214,14 +212,16 @@ public class RemoteSelectFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(devicePower == "off") {
-                    tempRemoteReference.child("Status").child("Power").setValue("on");
-                    devicePower = "on";
+                tempRemoteReference.child("Status").child("Power").setValue("Clicked");
+                try
+                {
+                    Thread.sleep(500);
                 }
-                else {
-                    tempRemoteReference.child("Status").child("Power").setValue("off");
-                    devicePower = "off";
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
                 }
+                tempRemoteReference.child("Status").child("Power").setValue("Still");
             }
         });
 
@@ -229,14 +229,16 @@ public class RemoteSelectFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(deviceMenu == "off") {
-                    tempRemoteReference.child("Status").child("Menu").setValue("on");
-                    deviceMenu = "on";
+                tempRemoteReference.child("Status").child("Menu").setValue("Clicked");
+                try
+                {
+                    Thread.sleep(500);
                 }
-                else{
-                    tempRemoteReference.child("Status").child("Menu").setValue("off");
-                    deviceMenu = "off";
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
                 }
+                tempRemoteReference.child("Status").child("Menu").setValue("Still");
             }
         });
 
@@ -280,6 +282,24 @@ public class RemoteSelectFragment extends Fragment {
                 uniqueKey = myDeviceReference.push().getKey();
                 Device device = new Device(deviceType,deviceBrand,""+patternNumber,uniqueKey);
                 myDeviceReference.child(uniqueKey).setValue(device);
+                myDeviceReference.child(uniqueKey).child("Status").child("Power").setValue("Off");
+                switch (deviceType)
+                {
+                    case "Airconditioner":
+                    {
+                        myDeviceReference.child(uniqueKey).child("Status").child("Temperature").setValue(25);
+                        myDeviceReference.child(uniqueKey).child("Status").child("Mode").setValue("Freeze");
+                    }
+                    case "Television":
+                    {
+                        myDeviceReference.child(uniqueKey).child("Status").child("Volume").setValue(50);
+                        myDeviceReference.child(uniqueKey).child("Status").child("Channel").setValue(1);
+                    }
+                    case "Projector":
+                    {
+
+                    }
+                }
             }
         });
 

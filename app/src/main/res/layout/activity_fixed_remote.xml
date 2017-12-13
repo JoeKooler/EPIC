@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,64 +7,167 @@
     tools:context="com.example.yoons.EPIC.FixedRemoteActivity">
 
     <TextView
-        android:id="@+id/testDeviceVersioninFixed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="33dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/testDeviceTypeinFixed"
+        android:id="@+id/deviceInfoinRemote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/testDeviceVersioninFixed"
         android:layout_alignStart="@+id/testDeviceVersioninFixed"
         android:layout_below="@+id/testDeviceBrandinFixed"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/testDeviceBrandinFixed"
+        android:id="@+id/powerStatusinRemote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/testDeviceTypeinFixed"
-        android:layout_alignStart="@+id/testDeviceTypeinFixed"
-        android:layout_below="@+id/testDeviceVersioninFixed"
-        android:layout_marginTop="18dp"
+        android:layout_alignBaseline="@+id/textView12"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="108dp"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_toRightOf="@+id/textView12"
         android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/testDeviceUIDinFixed"
+        android:id="@+id/otherStatusinRemote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/testDeviceTypeinFixed"
-        android:layout_alignStart="@+id/testDeviceTypeinFixed"
-        android:layout_below="@+id/testDeviceTypeinFixed"
-        android:layout_marginTop="15dp"
+        android:layout_alignBaseline="@+id/tempStatusinRemote"
+        android:layout_alignBottom="@+id/tempStatusinRemote"
+        android:layout_alignLeft="@+id/powerStatusinRemote"
+        android:layout_alignStart="@+id/powerStatusinRemote"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="148dp"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/powerButtoninRemote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/testDeviceUIDinFixed"
-        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/powerStatusinRemote"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_power_settings_new_black_24dp" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/upButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/powerButtoninRemote"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="312dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_expand_less_black_24dp" />
+
+    <ImageView
+        android:id="@+id/leftButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upButtoninRemote"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="376dp"
+        android:layout_toLeftOf="@+id/upButtoninRemote"
+        android:layout_toStartOf="@+id/upButtoninRemote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+    <ImageView
+        android:id="@+id/rightButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upButtoninRemote"
+        android:layout_marginEnd="84dp"
+        android:layout_marginTop="376dp"
+        android:layout_toEndOf="@+id/upButtoninRemote"
+        android:layout_toRightOf="@+id/upButtoninRemote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    <ImageView
+        android:id="@+id/downButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rightButtoninRemote"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="440dp"
+        android:layout_toEndOf="@+id/leftButtoninRemote"
+        android:layout_toRightOf="@+id/leftButtoninRemote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_expand_more_black_24dp" />
+
+    <TextView
+        android:id="@+id/okButtoninRemote"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/upButtoninRemote"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="392dp"
+        android:layout_toEndOf="@+id/leftButtoninRemote"
+        android:layout_toRightOf="@+id/leftButtoninRemote"
+        android:text="OK!"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/menuButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/leftButtoninRemote"
+        android:layout_alignEnd="@+id/deviceInfoinRemote"
+        android:layout_alignRight="@+id/deviceInfoinRemote"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="340dp"
+        android:text="MENU"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/videoButtoninRemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/menuButtoninRemote"
+        android:layout_alignBottom="@+id/menuButtoninRemote"
+        android:layout_alignEnd="@+id/rightButtoninRemote"
+        android:layout_alignRight="@+id/rightButtoninRemote"
+        android:layout_marginEnd="84dp"
+        android:layout_marginTop="340dp"
+        android:text="SOURCE"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
