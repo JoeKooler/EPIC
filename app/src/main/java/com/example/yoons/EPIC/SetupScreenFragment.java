@@ -96,7 +96,7 @@ public class SetupScreenFragment extends Fragment
         recyclerView.setLayoutManager(linearLayoutManager);
 
         deviceTypeList.add("Television");
-        deviceTypeList.add("Air Conditioner");
+        deviceTypeList.add("Airconditioner");
         deviceTypeList.add("Projector");
 
         adapter = new SetupRecyclerViewAdapter(getContext(),deviceTypeList,this);

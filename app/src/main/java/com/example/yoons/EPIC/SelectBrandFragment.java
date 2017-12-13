@@ -113,7 +113,7 @@ public class SelectBrandFragment extends Fragment
             case "Television":
                 adapter = new SelectBrandRecyclerViewAdapter(getContext(),DeviceBrandSelector.getTVList(),deviceType,this);
                 break;
-            case "Air Conditioner":
+            case "Airconditioner":
                 adapter = new SelectBrandRecyclerViewAdapter(getContext(),DeviceBrandSelector.getAirConditionerList(),deviceType,this);
                 break;
             case "Projector":

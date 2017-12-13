@@ -59,7 +59,7 @@ public class SetupRecyclerViewAdapter extends RecyclerView.Adapter<SetupRecycler
             case "Television":
                 holder.deviceTypeImage.setImageResource(R.drawable.tvimg);
                 break;
-            case "Air Conditioner":
+            case "Airconditioner":
                 holder.deviceTypeImage.setImageResource(R.drawable.airimg);
                 break;
             case "Projector":

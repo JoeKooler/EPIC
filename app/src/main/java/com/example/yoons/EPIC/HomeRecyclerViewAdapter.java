@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -43,7 +44,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         holder.deviceVersion.setText(device.Version);
         switch (device.Type)
         {
-            case "TV":
+            case "Television":
                 holder.deviceType.setImageResource(R.drawable.tvicon);
                 break;
             case "Airconditioner":
@@ -61,7 +62,10 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             {
                 menu.add(holder.getAdapterPosition(),0,0,"edit");
                 menu.add(holder.getAdapterPosition(),1,0,"delete");
+
+                menu.getItem(1);
             }
+
         });
 
         holder.homeScreenLayout.setOnClickListener(new View.OnClickListener()
@@ -77,6 +81,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             }
         });
     }
+
 
     @Override
     public int getItemCount()

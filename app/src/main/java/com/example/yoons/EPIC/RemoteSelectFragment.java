@@ -47,7 +47,7 @@ public class RemoteSelectFragment extends Fragment {
     private String deviceMenu = "off";
     private int patternNumber = 1;
 
-    private DatabaseReference maxPatternReference, tempRemoteReference;
+    private DatabaseReference maxPatternReference, tempRemoteReference, myDeviceReference;
     private FirebaseDatabase firebaseDatabase;
 
     private long maxPattern;
@@ -91,8 +91,8 @@ public class RemoteSelectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_remote_select, container, false);
 
         Bundle bundle = getArguments();
-        String deviceType = bundle.getString("deviceType");
-        String deviceBrand = bundle.getString("deviceBrand");
+        final String deviceType = bundle.getString("deviceType");
+        final String deviceBrand = bundle.getString("deviceBrand");
 
         ImageView backButtonInSelectBrand = (ImageView) view.findViewById(R.id.backButtonInSelectRemote);
         final ImageView selectRemoteNextButton = (ImageView) view.findViewById(R.id.selectRemoteNextButton);
@@ -101,13 +101,12 @@ public class RemoteSelectFragment extends Fragment {
         ImageView menuButton = (ImageView) view.findViewById(R.id.selectRemoteMenu);
         ImageView volumeUpButton = (ImageView) view.findViewById(R.id.selectRemoteVolumeUp);
         ImageView volumeDownButton = (ImageView) view.findViewById(R.id.selectRemoteVolumeDown);
+        Button confirmRemoteSelectionButton = (Button) view.findViewById(R.id.confirmRemoteSelection);
 
         TextView deviceBrandTest = (TextView) view.findViewById(R.id.deviceBrandinRemote);
         TextView deviceTypeTest = (TextView) view.findViewById(R.id.deviceTypeinRemote);
         final TextView versionNumberRemoteSelection = (TextView) view.findViewById(R.id.versionNumberRemoteSelection);
 
-        maxPatternReference = FirebaseDatabase.getInstance().getReference();
-        tempRemoteReference = FirebaseDatabase.getInstance().getReference();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         tempRemoteReference = firebaseDatabase.getReference("TempUnit").child("TempRemote");
@@ -118,6 +117,9 @@ public class RemoteSelectFragment extends Fragment {
         // get reference to 'users' node
         maxPatternReference = firebaseDatabase.getReference("AllVersion").child(deviceType).child(deviceBrand);
         System.out.println(deviceType+""+deviceBrand);
+
+        myDeviceReference = firebaseDatabase.getReference("MyDevice");
+
         maxPatternReference.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -256,6 +258,16 @@ public class RemoteSelectFragment extends Fragment {
                     Thread.currentThread().interrupt();
                 }
                 tempRemoteReference.child("Status").child("Volume").setValue("Still");
+            }
+        });
+
+        confirmRemoteSelectionButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Device device = new Device(deviceType,deviceBrand,""+patternNumber);
+                myDeviceReference.push().setValue(device);
             }
         });
 
