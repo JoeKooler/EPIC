@@ -77,6 +77,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 intent.putExtra("deviceType", device.Type);
                 intent.putExtra("deviceBrand", device.Brand);
                 intent.putExtra("deviceVersion", device.Version);
+                intent.putExtra("deviceUID",device.UID);
                 v.getContext().startActivity(intent);
             }
         });

@@ -135,7 +135,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:layout_alignLeft="@+id/selectRemoteVolumeUp"
         android:layout_alignStart="@+id/selectRemoteVolumeUp"
-        android:layout_below="@+id/textView10"
+        android:layout_below="@+id/selectRemoteVolumeUpText"
         android:layout_marginStart="124dp"
         android:layout_marginTop="316dp"
         android:src="@drawable/ic_volume_down_black_24dp"
@@ -147,9 +147,9 @@
         android:layout_width="36dp"
         android:layout_height="38dp"
         android:background="?android:attr/selectableItemBackground"
-        android:layout_above="@+id/textView10"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
+        android:layout_above="@+id/selectRemoteVolumeUpText"
+        android:layout_alignLeft="@+id/selectRemoteVolumeUpText"
+        android:layout_alignStart="@+id/selectRemoteVolumeUpText"
         android:layout_marginEnd="136dp"
         android:layout_marginTop="316dp"
         android:src="@drawable/ic_volume_up_black_24dp"
@@ -190,7 +190,7 @@
         app:layout_constraintVertical_bias="0.266" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/selectRemoteVolumeDownText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/selectBrandDeviceRemoteText"
@@ -204,12 +204,12 @@
         app:layout_constraintTop_toBottomOf="@+id/selectRemoteVolumeDown" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/selectRemoteVolumeUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/selectRemoteNextButton"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_alignStart="@+id/textView9"
+        android:layout_alignLeft="@+id/selectRemoteVolumeDownText"
+        android:layout_alignStart="@+id/selectRemoteVolumeDownText"
         android:layout_marginEnd="116dp"
         android:layout_marginTop="4dp"
         android:text="VOLUME UP"

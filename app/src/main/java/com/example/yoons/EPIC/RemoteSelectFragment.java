@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,7 @@ public class RemoteSelectFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String uniqueKey;
     private String devicePower = "off";
     private String deviceMenu = "off";
     private int patternNumber = 1;
@@ -105,7 +108,15 @@ public class RemoteSelectFragment extends Fragment {
 
         TextView deviceBrandTest = (TextView) view.findViewById(R.id.deviceBrandinRemote);
         TextView deviceTypeTest = (TextView) view.findViewById(R.id.deviceTypeinRemote);
+        TextView downType = (TextView) view.findViewById(R.id.selectRemoteVolumeDownText);
+        final TextView upType = (TextView) view.findViewById(R.id.selectRemoteVolumeUpText);
         final TextView versionNumberRemoteSelection = (TextView) view.findViewById(R.id.versionNumberRemoteSelection);
+
+        if(deviceType == "Airconditioner")
+        {
+            downType.setText("TEMP DOWN");
+            upType.setText("TEMP UP");
+        }
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -266,8 +277,9 @@ public class RemoteSelectFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Device device = new Device(deviceType,deviceBrand,""+patternNumber);
-                myDeviceReference.push().setValue(device);
+                uniqueKey = myDeviceReference.push().getKey();
+                Device device = new Device(deviceType,deviceBrand,""+patternNumber,uniqueKey);
+                myDeviceReference.child(uniqueKey).setValue(device);
             }
         });
 

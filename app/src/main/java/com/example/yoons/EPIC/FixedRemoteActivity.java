@@ -25,14 +25,18 @@ public class FixedRemoteActivity extends AppCompatActivity
         String deviceType = intent.getStringExtra("deviceType");
         String deviceBrand = intent.getStringExtra("deviceBrand");
         String deviceVersion = intent.getStringExtra("deviceVersion");
+        String deviceUID = intent.getStringExtra("deviceUID");
 
         TextView ddeviceType = (TextView) findViewById(R.id.testDeviceTypeinFixed);
         TextView ddeviceBrand = (TextView) findViewById(R.id.testDeviceBrandinFixed);
         TextView ddeviceVersion = (TextView) findViewById(R.id.testDeviceVersioninFixed);
+        TextView ddeviceUID = (TextView) findViewById(R.id.testDeviceUIDinFixed);
+
 
         ddeviceType.setText(deviceType);
         ddeviceBrand.setText(deviceBrand);
         ddeviceVersion.setText(deviceVersion);
+        ddeviceUID.setText(deviceUID);
     }
 
 }

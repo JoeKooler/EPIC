@@ -37,6 +37,7 @@ public class DeviceBrandSelector
         AIRCONDITIONERLIST.add("Panasonic");
         AIRCONDITIONERLIST.add("Daikin");
         AIRCONDITIONERLIST.add("Mitsubishi");
+        AIRCONDITIONERLIST.add("Haier");
         return AIRCONDITIONERLIST;
     }
 
