@@ -289,15 +289,17 @@ public class RemoteSelectFragment extends Fragment {
                     {
                         myDeviceReference.child(uniqueKey).child("Status").child("Temperature").setValue(25);
                         myDeviceReference.child(uniqueKey).child("Status").child("Mode").setValue("Freeze");
+                        break;
                     }
                     case "Television":
                     {
                         myDeviceReference.child(uniqueKey).child("Status").child("Volume").setValue(50);
                         myDeviceReference.child(uniqueKey).child("Status").child("Channel").setValue(1);
+                        break;
                     }
                     case "Projector":
                     {
-
+                        break;
                     }
                 }
             }
