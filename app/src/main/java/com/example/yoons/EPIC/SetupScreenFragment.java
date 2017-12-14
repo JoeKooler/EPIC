@@ -102,20 +102,6 @@ public class SetupScreenFragment extends Fragment
         adapter = new SetupRecyclerViewAdapter(getContext(),deviceTypeList,this);
         recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(com.example.yoons.EPIC.R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Toast.makeText(view.getContext(),"Switch lana",Toast.LENGTH_SHORT).show();
-                Intent manualAddActivityintent = new Intent(getContext(),ManualDeviceAddingActivity.class);
-                startActivity(manualAddActivityintent);
-            }
-        });
-
         return view;
     }
 

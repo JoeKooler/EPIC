@@ -302,6 +302,9 @@ public class RemoteSelectFragment extends Fragment {
                         break;
                     }
                 }
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.content,new HomeFragment()).commit();
             }
         });
 

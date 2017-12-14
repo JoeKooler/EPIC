@@ -1,6 +1,7 @@
 package com.example.yoons.EPIC;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.concurrent.TimeUnit;
-
 public class FixedRemoteActivity extends AppCompatActivity
 {
 
@@ -25,6 +22,7 @@ public class FixedRemoteActivity extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     private String powerStatus;
     private String setRemoteUpDownReference;
+    private int uniqueValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +36,10 @@ public class FixedRemoteActivity extends AppCompatActivity
         String deviceVersion = intent.getStringExtra("deviceVersion");
         final String deviceUID = intent.getStringExtra("deviceUID");
 
-        TextView deviceInfo = (TextView) findViewById(R.id.deviceInfoinRemote);
+        TextView deviceBrandinRemote = (TextView) findViewById(R.id.deviceBrandinRemote);
+        TextView deviceTypeinRemote = (TextView) findViewById(R.id.deviceTypeinRemote);
         final TextView powerStatusTextView = (TextView) findViewById(R.id.powerStatusinRemote);
-        TextView uniqueStatus = (TextView) findViewById(R.id.otherStatusinRemote);
+        final TextView uniqueStatus = (TextView) findViewById(R.id.otherStatusinRemote);
 
         TextView menuButton = (TextView) findViewById(R.id.menuButtoninRemote);
         TextView videoButton = (TextView) findViewById(R.id.videoButtoninRemote);
@@ -59,6 +58,12 @@ public class FixedRemoteActivity extends AppCompatActivity
         currentReference.child("Device").child("Type").setValue(deviceType);
         currentReference.child("Device").child("Brand").setValue(deviceBrand);
         currentReference.child("Device").child("Version").setValue(deviceVersion);
+
+        powerButton.setColorFilter(Color.WHITE);
+        upButton.setColorFilter(Color.WHITE);
+        downButton.setColorFilter(Color.WHITE);
+        leftButton.setColorFilter(Color.WHITE);
+        rightButton.setColorFilter(Color.WHITE);
 
         switch (deviceType)
         {
@@ -93,7 +98,9 @@ public class FixedRemoteActivity extends AppCompatActivity
             }
         }
 
-        deviceInfo.setText(deviceType + " " + deviceBrand + " " + deviceVersion);
+        deviceBrandinRemote.setText(deviceBrand);
+        deviceTypeinRemote.setText(deviceType);
+
         mydeviceReference.child(deviceUID).child("Status").child("Power").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -109,6 +116,32 @@ public class FixedRemoteActivity extends AppCompatActivity
 
             }
         });
+
+        uniqueStatus.setText("");
+
+        if (deviceType.equals("Television")||deviceType.equals("Airconditioner")){
+        mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                uniqueValue = dataSnapshot.getValue(int.class);
+
+                switch (deviceType) {
+                    case "Airconditioner":
+                        uniqueStatus.setText(uniqueValue+"°C");
+                        break;
+                    case "Television":
+                        uniqueStatus.setText(uniqueValue+"");
+                        break;
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        }
 
         powerButton.setOnClickListener(new View.OnClickListener()
         {
@@ -170,20 +203,25 @@ public class FixedRemoteActivity extends AppCompatActivity
                 mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        upValue = dataSnapshot.getValue(int.class);
-                        upValue++;
-                        System.out.println(deviceType+":"+upValue);
-                        if(deviceType.equals("Airconditioner") &&upValue>=30) {
-                            System.out.println(upValue);
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(30);
-                        }
-                        else if(deviceType.equals("Television") &&upValue>=100) {
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(100);
+                        if(deviceType.equals("Television")||deviceType.equals("Aircondition"))
+                        {
+                            upValue = dataSnapshot.getValue(int.class);
+                            upValue++;
+                            System.out.println(deviceType+":"+upValue);
+                            if(deviceType.equals("Airconditioner") &&upValue>=30) {
+                                System.out.println(upValue);
+                                mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(30);
+                            }
+                            else if(deviceType.equals("Television") &&upValue>=100) {
+                                mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(100);
+                            }
+                            else
+                            {
+                                mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(upValue);
+                            }
                         }
                         else
-                        {
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(upValue);
-                        }
+                            System.out.println("Nope LuL");
                     }
 
                     @Override
@@ -324,6 +362,54 @@ public class FixedRemoteActivity extends AppCompatActivity
             else
                 System.out.println("Nope LuL");
         }});
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentReference.child("Status").child("OK").setValue("Clicked");
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                currentReference.child("Status").child("OK").setValue("Still");
+            }
+        });
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentReference.child("Status").child("Menu").setValue("Clicked");
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                currentReference.child("Status").child("Menu").setValue("Still");
+            }
+        });
+
+        videoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentReference.child("Status").child("Source").setValue("Clicked");
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                currentReference.child("Status").child("Source").setValue("Still");
+            }
+        });
     }
 
 }
