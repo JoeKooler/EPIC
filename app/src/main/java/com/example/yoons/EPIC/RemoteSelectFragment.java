@@ -215,7 +215,7 @@ public class RemoteSelectFragment extends Fragment {
                 tempRemoteReference.child("Status").child("Power").setValue("Clicked");
                 try
                 {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 }
                 catch(InterruptedException ex)
                 {

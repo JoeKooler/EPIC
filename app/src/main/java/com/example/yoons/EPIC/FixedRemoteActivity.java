@@ -159,7 +159,7 @@ public class FixedRemoteActivity extends AppCompatActivity
                 }
                 try
                 {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 }
                 catch(InterruptedException ex)
                 {
@@ -203,7 +203,7 @@ public class FixedRemoteActivity extends AppCompatActivity
                 mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(deviceType.equals("Television")||deviceType.equals("Aircondition"))
+                        if(deviceType.equals("Television")||deviceType.equals("Airconditioner"))
                         {
                             upValue = dataSnapshot.getValue(int.class);
                             upValue++;
@@ -252,20 +252,25 @@ public class FixedRemoteActivity extends AppCompatActivity
                 mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        downValue = dataSnapshot.getValue(int.class);
-                        downValue--;
-                        System.out.println(deviceType+":"+downValue);
-                        if(deviceType.equals("Airconditioner") &&downValue<=15) {
-                            System.out.println(downValue);
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(15);
-                        }
-                        else if(deviceType.equals("Television") &&downValue<=0) {
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(0);
+                        if(deviceType.equals("Television")||deviceType.equals("Airconditioner"))
+                        {
+                            downValue = dataSnapshot.getValue(int.class);
+                            downValue--;
+                            System.out.println(deviceType+":"+downValue);
+                            if(deviceType.equals("Airconditioner") &&downValue<=15) {
+                                System.out.println(downValue);
+                                mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(15);
+                            }
+                            else if(deviceType.equals("Television") &&downValue<=0) {
+                                mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(0);
+                            }
+                            else
+                            {
+                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(downValue);
+                            }
                         }
                         else
-                        {
-                            mydeviceReference.child(deviceUID).child("Status").child(setRemoteUpDownReference).setValue(downValue);
-                        }
+                            System.out.println("Nope LuL");
                     }
 
                     @Override

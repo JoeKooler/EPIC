@@ -25,6 +25,7 @@ public class DeviceBrandSelector
         TVLIST.add("Sharp");
         TVLIST.add("Acer");
         TVLIST.add("BenQ");
+        TVLIST.add("TCL");
         return TVLIST;
     }
 
